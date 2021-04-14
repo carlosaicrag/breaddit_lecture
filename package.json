@@ -1,0 +1,16 @@
+{
+  "name": "breaddit",
+  "version": "1.0.0",
+  "description": "website that users can post about bread",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Module4-crew",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.6.0",
+    "sequelize": "^5.22.4",
+    "sequelize-cli": "^5.5.1"
+  }
+}
