@@ -1,0 +1,26 @@
+html
+  head
+    title Welcome
+  body
+    if userLoggedIn
+      h1 Welcome!
+    else
+      h1 Please log in.
+
+    ul
+      each user in users
+        li= user.dataValues.username
+        li= user.dataValues.email
+
+    
+    a(href="/banana" class="banana-button") Banana
+    div#container
+      a(href="/banana").button Cancel
+    form
+      div
+        label username:
+        input(type="text" name="username" value= username)
+      div
+        label email:
+        input(type="text" name="email" value= email)
+    p Welcome, #{username} #{email}!!
