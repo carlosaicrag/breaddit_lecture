@@ -3,6 +3,9 @@ const app = express();
 const { User } = require('./models/index');
 const usersRouter = require('./routes/users');
 
+app.use(express.static(path.join(__dirname, 'assets')));
+
+
 app.set('view engine', 'pug'); // let's use pug
 
 app.get('/', async (req, res) => { // first route
