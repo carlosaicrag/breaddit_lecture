@@ -1,0 +1,12 @@
+extends layout.pug
+block content
+    form(action="/users" method="post")
+        div
+        label username:
+        input(type="text" name="username" value="")
+        div
+        label email:
+        input(type="text" name="email" value="")
+        label age: 
+        input(type="text" name="age" value="")
+        button(type="submit") Submit
