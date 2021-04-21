@@ -9,7 +9,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug'); // let's use pug
 
-app.get('/', async (req, res) => { // first route
+const middle = (req, res, next) => {
+    console.log('banana');
+    next();
+};
+
+app.use((req, res, next) => {
+    req.isFunny = true;
+    next();
+});
+
+app.get('/', middle, (req, res) => { // first route
     // res.render('layout', {
     //     username: 'Carlos',
     //     email: 'carlos@gmail.com',
@@ -18,6 +28,7 @@ app.get('/', async (req, res) => { // first route
     // });
     res.render('layout');
 });
+
 
 // app.get('/users', async (req, res) => {
 //     const users = await User.findAll();
