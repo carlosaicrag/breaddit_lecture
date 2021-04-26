@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
     age: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    hashedPassword: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {});
   User.associate = function(models) {
