@@ -3,6 +3,9 @@ const app = express();
 const { User } = require('./models/index');
 const usersRouter = require('./routes/users');
 const path = require('path');
+const session = require('express-session')
+
+app.use(session({secret: 'superSecret', saveUninitialized: false, resave: false,}))
 
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.urlencoded({ extended: true }));
@@ -10,7 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'pug'); // let's use pug
 
 const middle = (req, res, next) => {
-    console.log('banana');
     next();
 };
 
