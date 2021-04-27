@@ -16,18 +16,18 @@ console.log(digest2.toString('base64'));
 
 // const password = 'superSecurePassword1!';
 const util = require('util');
-const salter = util.promisify(crypto.randomBytes);
-const hasher3 = util.promisify(crypto.pbkdf2);
+const salter = util.promisify(crypto.randomBytes); // initialize a salt creator (salt shaker)
+const hasher3 = util.promisify(crypto.pbkdf2); // initialize a hash creator 
 
 
 
 async function generateHashedPW(password) {
   // generate random salt string
-  const salt = (await salter(64)).toString('base64');
+  const salt = (await salter(64)).toString('base64'); // invoke salt creator to create a random salt
   // console.log('salt', salt);
   // we add the salt to the password we're looking to hash, which will ensure the same password inputs will result in different hash outputs
   // hash('password384hduj37g21ndw8y2he');
-  const hashed = (await hasher3(password, salt, 10000, 64, 'sha512')).toString('base64'); 
+  const hashed = (await hasher3(password, salt, 10000, 64, 'sha512')).toString('base64'); // invoke hash creator to create a hash
   //hasher3(password, salt, how_many_times_hashed,length_of_key_in_bits,type_of_hashing_algo)
 
   // console.log('hashed', hashed);
@@ -52,8 +52,6 @@ checkPassword(
   'superSecurePassword1!',
   "BSDbdivXven9tq6CuWIyza1t9y1KHZlQ507NRVD4lPD1NDPuHzzAs9D0fRoZaUSOd1fgVduq0JG1klIqdNXJ8g==:tHGLHaf5/J/zQPzitR74jl/riv3s3gqTupP9yTvCW0IuPyiyHSB4Kyq9IN+oj5P89YPR2KSWEUIS7TbX6Tmn2Q=="
 );
-
-
 
 'X8vZF10brEfMt6MftvzoV6oCW03gTILNSN+w/dFgr6igGmEAvR0pHTI47xeikH3nhEKeDNtHsYK7YOeS9xdciQ==:U9jPukuUH4Js/7a3ZXCc7Hg2RxcSPGHGyeiXfih4oPVOtAJgwFkJK5QL2FueT3zAfZk65DnQluCi8XZ5gbNurg=='
 
