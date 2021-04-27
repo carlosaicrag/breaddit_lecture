@@ -15,6 +15,10 @@ router.get('/new', (req, res) => {
     res.render('users_new'); // renders HTML, not full http request
 });
 
+router.get('/login', (req, res) => {
+    res.render('users_login'); // renders HTML, not full http request
+});
+
 router.post('/', async (req, res) => {
     const {username, email, age} = req.body;
     const user = await User.create({username, email, age});

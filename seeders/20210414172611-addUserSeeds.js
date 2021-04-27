@@ -1,7 +1,8 @@
 'use strict';
+const bcrypt = require("bcrypt");
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: async (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -12,11 +13,13 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+    const hashedPW = await bcrypt.hash("password", 10);
     return queryInterface.bulkInsert('Users', [
       {
         username: 'carlos',
         email: 'carlos@gmail.com',
         age: 10000,
+        hashedPassword: hashedPW,
         createdAt: new Date(),
         updatedAt: new Date()
       },
