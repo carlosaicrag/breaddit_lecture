@@ -1,0 +1,11 @@
+extends layout.pug
+block content
+  h1 all of the posts
+
+  ul 
+    each post in posts 
+      li
+        p=post.title
+        p=post.body
+        form(action=`/posts/${post.id}/delete` method='post')
+          input(type="submit", value="Bake it Away")
