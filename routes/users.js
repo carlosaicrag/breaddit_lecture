@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require('../models');
+const asyncHandler = require('../util/asyncHandler');
 
-router.get('/', async (req, res) => {
-    const users = await User.findAll();
-    // console.log(users);
-    res.render('users', {
-        users
-    });
-});
+
+router.get('/', asyncHandler(async (req, res, next) => {
+        const users = await Use.findAll();
+        res.render('users', {
+            users
+        });
+}));
 
 router.get('/new', (req, res) => {
     res.render('users_new'); // renders HTML, not full http request
