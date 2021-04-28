@@ -28,9 +28,29 @@ app.get('/', middle, (req, res) => { // first route
 
 app.get('/posts', async (req,res) => {
     const posts = await Post.findAll();
-    res.render("post_index.pug", {posts});
+    console.log(posts)
+    res.render("post_index.pug", {posts:posts});
 })
 
+app.post("/posts/:id/delete", async (req,res) => {
+    console.log(req.params)
+    const post = await Post.findByPk(req.params.id)
+    await post.destroy()
+    res.redirect('/posts')
+})
+
+
+app.delete('/posts/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+  const post = await Post.findByPk(id);
+  if (post) {
+    await post.destroy();
+    res.json({ success: 'success' })
+  } else {
+    res.status(500)
+    res.json({ success: 'failure!' })
+  }
+})
 
 // app.get('/users', async (req, res) => {
 //     const users = await User.findAll();

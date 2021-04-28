@@ -1,7 +1,9 @@
 html
   head
-    link(rel="stylesheet" href="/stylesheets/entry.css" type="text/css")
-    title Welcome
+    block head
+      link(rel="stylesheet" href="/stylesheets/entry.css" type="text/css")
+      title Welcome
+
   body
     include welcome.pug
     block content

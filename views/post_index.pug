@@ -1,11 +1,11 @@
 extends layout.pug
+append head 
+  script(src="javascripts/delete_posts.js" type='module') 
 block content
   h1 all of the posts
-
   ul 
     each post in posts 
       li
         p=post.title
         p=post.body
-        form(action=`/posts/${post.id}/delete` method='post')
-          input(type="submit", value="Bake it Away")
+        button(class="delete-button" data-user-id=post.id) Bake it Away
