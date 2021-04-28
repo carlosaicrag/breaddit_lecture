@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const { Post } = require('./models/index');
 const usersRouter = require('./routes/users');
+const postsRouter = require('./routes/posts');
 const path = require('path');
 const session = require('express-session');
 app.use(session({ secret: 'superSecret', saveUninitialized: false, resave: false }));
@@ -26,10 +27,7 @@ app.get('/', middle, (req, res) => { // first route
     res.render('layout');
 });
 
-app.get('/posts', async (req,res) => {
-    const posts = await Post.findAll();
-    res.render("post_index.pug", {posts});
-})
+
 
 
 // app.get('/users', async (req, res) => {
@@ -41,6 +39,7 @@ app.get('/posts', async (req,res) => {
 // });
 
 app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
 
 app.get('/product/:id(\\d+)', (req, res) => {
     const productId = parseInt(req.params.id, 10);
