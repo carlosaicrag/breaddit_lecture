@@ -13,7 +13,7 @@ router.use("/home", asyncHandler(async (req,res) => {
   res.render("index.pug", {post})
 }))
 
-router.use("/authorized_home", asyncHandler(async (req,res) => {
+router.use("/authorized_home", requireAuth, asyncHandler(async (req,res) => {
   res.render("authorized_home")
 }))
 

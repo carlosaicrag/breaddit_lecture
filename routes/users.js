@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require('../models');
 const asyncHandler = require('../util/asyncHandler');
 const bcrypt = require('bcrypt'); 
+const {getUserToken} = require("../auth")
 
 router.get('/', asyncHandler(async (req, res, next) => {
         const users = await User.findAll();
@@ -19,9 +20,13 @@ router.post('/signup', async (req, res) => {
     const {username, email, age, password} = req.body;
     const hashedPassword = await bcrypt.hash(password, 8); // does hashing and salting for us
     const user = await User.create({ username, email, age, hashedPassword });
-    // log user in after signing up
-    req.session.user = { id: user.id, email: user.email, username: user.username };
-    res.redirect('/users'); // new get request to /users
+
+    const token = getUserToken(user);
+
+    res.status(201).json({
+      user: { id: user.id },
+      token,
+    });
 });
 
 router.get('/login', (req, res) => {
