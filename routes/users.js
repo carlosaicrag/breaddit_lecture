@@ -22,7 +22,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 router.get('/signup', loginReq, (req, res) => {
     res.render('users_signup'); // renders HTML, not full http request
 });
-console.log('banana');
+
 router.post('/signup', async (req, res) => {
     const {username, email, age, password} = req.body;
     const hashedPassword = await bcrypt.hash(password, 8); // does hashing and salting for us
