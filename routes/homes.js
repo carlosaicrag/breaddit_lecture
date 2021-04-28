@@ -2,7 +2,7 @@
 const express = require("express")
 const router = express.Router()
 
-const {asyncHandler} = require("./util")
+const asyncHandler = require("../util/asyncHandler")
 const {requireAuth} = require("../auth")
 const {Post} = require("../models")
 

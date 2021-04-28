@@ -4,14 +4,6 @@ const { User } = require('../models');
 const asyncHandler = require('../util/asyncHandler');
 const bcrypt = require('bcrypt'); 
 
-const loginReq = (req, res, next) => {
-    if (req.session.user) {
-        res.redirect('/users'); // new GET request to /users
-    } else {
-        next();
-    }
-};
-
 router.get('/', asyncHandler(async (req, res, next) => {
         const users = await User.findAll();
         res.render('users', {
@@ -19,7 +11,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
         });
 }));
 
-router.get('/signup', loginReq, (req, res) => {
+router.get('/signup', (req, res) => {
     res.render('users_signup'); // renders HTML, not full http request
 });
 
@@ -32,7 +24,7 @@ router.post('/signup', async (req, res) => {
     res.redirect('/users'); // new get request to /users
 });
 
-router.get('/login', loginReq, (req, res) => {
+router.get('/login', (req, res) => {
     res.render('users_login'); // renders HTML, not full http request
 });
 
